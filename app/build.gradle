@@ -19,15 +19,9 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile(name: 'yesuppartner-debug', ext: 'aar')
+    compile 'com.yesup.partner:yesuppartner:1.2.1'
     compile 'com.android.support:appcompat-v7:23.4.0'
 }

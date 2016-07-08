@@ -3,6 +3,7 @@ package com.yesup.reminder;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -20,9 +21,12 @@ import android.widget.TextView;
 
 import com.yesup.ad.banner.BannerView;
 import com.yesup.ad.interstitial.IInterstitialListener;
+import com.yesup.ad.offerwall.OfferWallPartnerHelper;
+import com.yesup.partner.YesupAd;
 import com.yesup.partner.YesupInterstitial;
 import com.yesup.partner.YesupOfferWall;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -67,11 +71,24 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        // init custom information
+        String subId = "123123";  // optional, you app user id
+        String optValue1 = "";    // optional, additional event value you want to keep track
+        String optValue2 = "";    // optional, additional event value you want to keep track
+        String optValue3 = "";    // optional, additional event value you want to keep track
+        YesupAd.setSubId(subId);
+        YesupAd.setOption(optValue1, optValue2, optValue3);
+        YesupAd.setDebugMode(true);
+
+        // banner ad
         bannerAdBottom = (BannerView)findViewById(R.id.yesupBannerAdBottom);
+        // interstitial ad
         interstitialAd = new YesupInterstitial(this);
         partnerView = new InterstitialPartnerView(this);
+        // offer wall
         offerwallAd = new YesupOfferWall(this);
-        offerwallAd.setDebugMode(true);
+        offerwallAd.setOfferWallPartnerHelper(new OfferWallHelper(this));
+
     }
 
     @Override
@@ -79,6 +96,9 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         if (null != bannerAdBottom) {
             bannerAdBottom.onResume();
+        }
+        if (null != offerwallAd) {
+            offerwallAd.onResume();
         }
     }
 
@@ -145,7 +165,7 @@ public class MainActivity extends AppCompatActivity
                     task.saveTask(getApplicationContext());
                     mTaskListAdapter.notifyDataSetChanged();
                     // show interstitial ad
-                    interstitialAd.showInterstitial(104925, false, true, partnerView);
+                    interstitialAd.showDefaultInterstitial(false, true, partnerView);
                 }
                 break;
             case 1:
@@ -174,7 +194,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onInterstitialShown() {
         Log.i(TAG, "On Interstitial Shown");
-        interstitialAd.safeClose();
+        //interstitialAd.safeClose();
     }
 
     @Override
@@ -284,6 +304,33 @@ public class MainActivity extends AppCompatActivity
             holder.tvDate.setText(task.getNextDate());
             holder.tvCycle.setText(task.getCycle());
         }
+    }
+
+    public class OfferWallHelper extends OfferWallPartnerHelper {
+
+        public OfferWallHelper(Context context) {
+            super(context);
+        }
+
+        @Override
+        public String calculateReward(int payout, int incentRate) {
+            String result = "0";
+            double reward = (double)payout * (double)incentRate / 100000.0D;
+            if(0.0D == reward) {
+                result = "";
+            } else {
+                result = (new DecimalFormat("#.##")).format(reward);
+            }
+
+            return result;
+        }
+
+        @Override
+        public Drawable getRewardIcon() {
+            Drawable drawable = context.getResources().getDrawable(R.drawable.coins);
+            return drawable;
+        }
+
     }
 
 }
