@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         // init custom information
-        String subId = "123123";  // optional, you app user id
+        String subId = "Reminder";  // optional, you app user id
         String optValue1 = "";    // optional, additional event value you want to keep track
         String optValue2 = "";    // optional, additional event value you want to keep track
         String optValue3 = "";    // optional, additional event value you want to keep track
