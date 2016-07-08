@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity
         String optValue3 = "";    // optional, additional event value you want to keep track
         YesupAd.setSubId(subId);
         YesupAd.setOption(optValue1, optValue2, optValue3);
-        YesupAd.setDebugMode(true);
 
         // banner ad
         bannerAdBottom = (BannerView)findViewById(R.id.yesupBannerAdBottom);
