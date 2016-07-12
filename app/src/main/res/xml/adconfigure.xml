@@ -8,10 +8,10 @@
     </site>
     <zones>
         <zone>
-            <id>72586</id>
-            <formats>1</formats>
-            <display>4</display>
-            <size>17</size>
+            <id>109074</id>
+            <formats>2</formats>
+            <display>2</display>
+            <size>14</size>
         </zone>
         <zone>
             <id>104925</id>
@@ -20,7 +20,7 @@
             <size>7</size>
         </zone>
         <zone>
-            <id>104923</id>
+            <id>105825</id>
             <formats>4</formats>
             <display>4</display>
             <size>0</size>

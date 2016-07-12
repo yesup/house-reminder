@@ -1,0 +1,6 @@
+1. in project root, run
+   ./gradlew assembleRelease
+   Enter keystore password is needed
+
+2. The built file will be under app/build/outpus/apk folder
+
