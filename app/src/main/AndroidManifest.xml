@@ -17,7 +17,7 @@
         </activity>
         <activity
             android:name="com.yesup.ad.offerwall.OfferWallActivity"
-            android:label="Games" />
+            android:label="Free Games" />
 
         <receiver android:name=".AlarmReceiver"></receiver>
     </application>
