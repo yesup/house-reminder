@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onInterstitialShown() {
         Log.i(TAG, "On Interstitial Shown");
-        //interstitialAd.safeClose();
+        interstitialAd.safeClose();
     }
 
     @Override

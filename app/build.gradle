@@ -8,8 +8,8 @@ android {
         applicationId "com.yesup.reminder"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.3"
     }
     sourceSets {
         main {
@@ -37,7 +37,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.yesup.partner:yesuppartner:1.2.3'
+    compile 'com.yesup.partner:yesuppartner:1.2.5'
     compile 'com.android.support:appcompat-v7:23.4.0'
 }
 
